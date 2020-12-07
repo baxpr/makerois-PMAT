@@ -38,6 +38,15 @@ Entorhinal cortex
 
 Temporal lobe
 
+     1  R Hipp Head
+	 2  R Hipp Body
+	 4  L Hipp Head
+     5  L Hipp Body
+     6  R Amygdala
+	 8  L Amygdala
+	10  R Hipp Tail
+	11  L Hipp Tail 
+
 - Plassard AJ, McHugo M, Heckers S, Landman BA. Multi-Scale Hippocampal Parcellation Improves Atlas-Based Segmentation Accuracy. Proc SPIE Int Soc Opt Eng. 2017 Feb 11;10133:101332D. doi: 10.1117/12.2254425. Epub 2017 Feb 24. PMID: 28781411; PMCID: PMC5544133.
 
 
