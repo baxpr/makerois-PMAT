@@ -33,10 +33,10 @@ labels = r_hipp_anterior + l_hipp_anterior ...
 label_csv = fullfile(out_dir,'rois_PMAT-labels.csv');
 label_fid = fopen(label_csv,'w');
 fprintf(label_fid,'Label,Region\n');
-fprintf(label_fid,'1,Hippocampus_Anterior_R_TLv3\n');
-fprintf(label_fid,'2,Hippocampus_Anterior_L_TLv3\n');
-fprintf(label_fid,'3,Hippocampus_Posterior_R_TLv3\n');
-fprintf(label_fid,'4,Hippocampus_Posterior_L_TLv3\n');
+fprintf(label_fid,'1,AT_R_Hippocampus_Anterior_rh_TLv3\n');
+fprintf(label_fid,'2,AT_L_Hippocampus_Anterior_lh_TLv3\n');
+fprintf(label_fid,'3,PM_R_Hippocampus_Posterior_rh_TLv3\n');
+fprintf(label_fid,'4,PM_L_Hippocampus_Posterior_lh_TLv3\n');
 
 
 %% Freesurfer
@@ -55,10 +55,10 @@ if any(sums(:)>1)
 end
 
 labels = labels + pp;
-fprintf(label_fid,'5,Parahippocampus_R_FS\n');
-fprintf(label_fid,'6,Parahippocampus_L_FS\n');
-fprintf(label_fid,'7,Perirhinal_R_FS\n');
-fprintf(label_fid,'8,Perirhinal_L_FS\n');
+fprintf(label_fid,'5,PM_R_Parahippocampus_rh_FS\n');
+fprintf(label_fid,'6,PM_L_Parahippocampus_lh_FS\n');
+fprintf(label_fid,'7,AT_R_Perirhinal_rh_FS\n');
+fprintf(label_fid,'8,AT_L_Perirhinal_lh_FS\n');
 
 
 
