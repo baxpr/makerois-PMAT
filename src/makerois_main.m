@@ -11,7 +11,7 @@ mnigeom_nii = which(inp.mnigeom_nii);
 
 %% Copy files to working directory with consistent names and unzip
 disp('File prep')
-[tseg_nii,deffwd_nii] = prep_files(inp);
+[tseg_nii,deffwd_nii,aparc_nii] = prep_files(inp);
 
 
 %% Warp/resample ROIs to MNI space
