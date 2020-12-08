@@ -29,6 +29,7 @@ addOptional(P,'scan','UNK_SCAN');
 addOptional(P,'out_dir','../OUTPUTS');
 
 % Change paths to match test environment if needed
+addOptional(P,'fs_dir','/usr/local/freesurfer');
 addOptional(P,'fsl_dir','/usr/local/fsl');
 addOptional(P,'src_dir','/opt/cersuit/src');
 addOptional(P,'immag_dir','/usr/bin');

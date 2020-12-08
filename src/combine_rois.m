@@ -1,12 +1,12 @@
-function combine_rois(tseg_nii,subj_dir,out_dir)
+function combine_rois(wtseg_nii,waparc_nii,out_dir)
 
 
 %% ROI file info, and verify geometry
-Vtseg = spm_vol(tseg_nii);
-Vsubj = spm_vol([subj_dir '/mri/whatever.nii']);
+Vtseg = spm_vol(wtseg_nii);
+Vaparc = spm_vol(waparc_nii);
 Vat = spm_vol(which('AT_Network_ROIs.nii.gz'));
 Vpm = spm_vol(which('PM_Network_ROIs.nii.gz'));
-spm_check_orientations([Vtseg; Vsubj; Vat; Vpm]);
+spm_check_orientations([Vtseg; Vaparc; Vat; Vpm]);
 
 
 %% Temporal lobe
@@ -35,6 +35,10 @@ fprintf(label_fid,'1,Hippocampus_Anterior_R\n');
 fprintf(label_fid,'2,Hippocampus_Anterior_L\n');
 fprintf(label_fid,'3,Hippocampus_Posterior_R\n');
 fprintf(label_fid,'4,Hippocampus_Posterior_L\n');
+
+
+%% Freesurfer
+Yaparc = spm_read_vols(Vaparc);
 
 
 

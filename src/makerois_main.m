@@ -16,8 +16,8 @@ disp('File prep')
 
 %% Warp/resample ROIs to MNI space
 disp('Warping')
-wseg_nii = warp_images(tseg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
-% warp freesurfer
+wtseg_nii = warp_images(tseg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
+waparc_nii = warp_images(aparc_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 % coreg reslice AT, PM
 
 
