@@ -1,16 +1,19 @@
-function segwarp(varargin)
+function makerois(varargin)
 
 
 %% Parse inputs
 P = inputParser;
 
-% Native space segmentation
-addOptional(P,'seg_niigz','../INPUTS/T1_seg.nii.gz');
+% Temporal lobe segmentation, Temporal_Lobe_v3 SEG
+addOptional(P,'tseg_niigz','../INPUTS/tseg.nii.gz');
 
-% Forward SPM deformation field from native to atlas
+% Freesurfer SUBJECT dir
+addOptional(P,'subj_dir','../INPUTS/SUBJECT');
+
+% Forward SPM deformation field from native to atlas, cat12 DEF_FWD
 addOptional(P,'deffwd_niigz','../INPUTS/y_t1.nii.gz');
 
-% Already-warped subject T1
+% Already-warped subject T1, cat12 BIAS_NORM
 addOptional(P,'wt1_niigz','../INPUTS/wmt1.nii.gz');
 
 % Output geometry ('avg152T1.nii' or 'TPM.nii')
@@ -35,5 +38,5 @@ addOptional(P,'immag_dir','/usr/bin');
 parse(P,varargin{:});
 disp(P.Results)
 
-segwarp_main(P.Results)
+makerois_main(P.Results)
 

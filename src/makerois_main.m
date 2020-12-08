@@ -1,4 +1,4 @@
-function segwarp_main(inp)
+function makerois_main(inp)
 
 
 %% SPM init
@@ -11,12 +11,13 @@ mnigeom_nii = which(inp.mnigeom_nii);
 
 %% Copy files to working directory with consistent names and unzip
 disp('File prep')
-[seg_nii,deffwd_nii] = prep_files(inp);
+[tseg_nii,deffwd_nii] = prep_files(inp);
 
 
-%% Warp SEG to MNI space
+%% Warp temporal lobe and Freesurfer ROIs to MNI space
 disp('Warping')
-wseg_nii = warp_images(seg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
+wseg_nii = warp_images(tseg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
+w
 
 
 %% Make output PDF
