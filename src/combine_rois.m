@@ -46,8 +46,8 @@ YperiL = spm_read_vols(VperiL);
 pp = zeros(size(Yaparc));
 pp(Yaparc(:)==2016) = 5;  % R parahipp
 pp(Yaparc(:)==1016) = 6;  % L parahipp
-pp(YperiR(:)>0)     = 7;  % R perirhinal
-pp(YperiL(:)>0)     = 8;  % L perirhinal
+pp(YperiR(:)>0)     = 7;  % R perirhinal, overwrites parahipp
+pp(YperiL(:)>0)     = 8;  % L perirhinal, overwrites parahipp
 
 sums = labels>0 + pp>0;
 if any(sums(:)>1)
