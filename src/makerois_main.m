@@ -14,10 +14,15 @@ disp('File prep')
 [tseg_nii,deffwd_nii] = prep_files(inp);
 
 
-%% Warp temporal lobe and Freesurfer ROIs to MNI space
+%% Warp/resample ROIs to MNI space
 disp('Warping')
 wseg_nii = warp_images(tseg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
-w
+% warp freesurfer
+% coreg reslice AT, PM
+
+
+%% Combine desired ROIs into single image
+combine_rois();
 
 
 %% Make output PDF
