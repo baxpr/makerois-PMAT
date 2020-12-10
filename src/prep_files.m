@@ -5,11 +5,13 @@ function [tseg_nii,deffwd_nii,aparc_nii,perirhinalR_nii,perirhinalL_nii,at_nii,p
 copyfile(which('AT_Network_ROIs.nii.gz'), ...
 	fullfile(inp.out_dir,'AT_Network_ROIs.nii.gz'));
 gunzip(fullfile(inp.out_dir,'AT_Network_ROIs.nii.gz'));
+delete(fullfile(inp.out_dir,'AT_Network_ROIs.nii.gz'));
 at_nii = fullfile(inp.out_dir,'AT_Network_ROIs.nii');
 
 copyfile(which('PM_Network_ROIs.nii.gz'), ...
 	fullfile(inp.out_dir,'PM_Network_ROIs.nii.gz'));
 gunzip(fullfile(inp.out_dir,'PM_Network_ROIs.nii.gz'));
+delete(fullfile(inp.out_dir,'PM_Network_ROIs.nii.gz'));
 pm_nii = fullfile(inp.out_dir,'PM_Network_ROIs.nii');
 
 % MNI space deformation field
