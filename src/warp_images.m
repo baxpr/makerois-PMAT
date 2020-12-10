@@ -13,11 +13,7 @@ job.out{1}.pull.fwhm = [0 0 0];
 
 spm_deformations(job);
 
-% Figure out the output filename and rename to consistent filename
+% Figure out the output filename
 [~,n,e] = fileparts(seg_nii);
 wseg_nii = fullfile(out_dir,['w' n e]);
-out_nii = fullfile(out_dir,'wseg.nii');
-if ~strcmp(wseg_nii,out_nii)
-	movefile(wseg_nii,out_nii);
-	wseg_nii = out_nii;
-end
+
