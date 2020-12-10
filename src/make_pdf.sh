@@ -38,7 +38,7 @@ ${IMMAGDIR}/convert \
 -size 2600x3365 xc:white \
 -gravity center \( page1.png -resize 2400x \) -composite \
 -gravity North -pointsize 48 -annotate +0+100 \
-"Segmentation warped to atlas space" \
+"PMAT ROIs in atlas space" \
 -gravity SouthEast -pointsize 48 -annotate +100+100 "$(date)" \
 -gravity NorthWest -pointsize 48 -annotate +100+200 "${info_string}" \
 makerois-PMAT.pdf
