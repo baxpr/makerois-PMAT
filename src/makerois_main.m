@@ -20,7 +20,8 @@ wtseg_nii = warp_images(tseg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 waparc_nii = warp_images(aparc_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 wperiR_nii = warp_images(periR_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 wperiL_nii = warp_images(periL_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
-% FIXME coreg reslice AT, PM
+rsrc_nii = reslice_images(at_nii,wtseg_nii,0)
+rsrc_nii = reslice_images(pm_nii,wtseg_nii,0)
 
 
 %% Combine desired ROIs into single image
