@@ -1,5 +1,8 @@
 function combine_rois(wtseg_nii,waparc_nii,wperiR_nii,wperiL_nii,out_dir)
 
+% ROIs are combined in a specific order - later ones overwrite earlier ones
+% if there is any overlap.
+
 
 %% ROI file info, verify geometry, load
 Vtseg = spm_vol(wtseg_nii);
