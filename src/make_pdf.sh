@@ -17,13 +17,13 @@ fsleyes render -of subj.png \
   --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
   ${WT1_NII} --overlayType volume \
-  ${WSEG_NII} --overlayType label --lut random_big --outline --outlineWidth 2
+  ${WSEG_NII} --overlayType label --lut random_big --outlineWidth 0 #--outline
 
 fsleyes render -of atlas.png \
   --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
   ${MNI_NII} --overlayType volume \
-  ${WSEG_NII} --overlayType label --lut random_big --outline --outlineWidth 2
+  ${WSEG_NII} --overlayType label --lut random_big --outlineWidth 0 #--outline
 
 
 # Combine into single PDF
