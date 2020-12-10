@@ -14,13 +14,13 @@ cd ${OUTDIR}
 # Views of seg over subject T1 and atlas T1
 z=100
 fsleyes render -of subj.png \
-  --scene ortho --worldLoc 4 0 0 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
+  --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
   ${WT1_NII} --overlayType volume \
   ${WSEG_NII} --overlayType label --lut random_big --outline --outlineWidth 2
 
 fsleyes render -of atlas.png \
-  --scene ortho --worldLoc 4 0 0 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
+  --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
   ${MNI_NII} --overlayType volume \
   ${WSEG_NII} --overlayType label --lut random_big --outline --outlineWidth 2
@@ -41,5 +41,5 @@ ${IMMAGDIR}/convert \
 "Segmentation warped to atlas space" \
 -gravity SouthEast -pointsize 48 -annotate +100+100 "$(date)" \
 -gravity NorthWest -pointsize 48 -annotate +100+200 "${info_string}" \
-segwarp.pdf
+makerois-PMAT.pdf
 

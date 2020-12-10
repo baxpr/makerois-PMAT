@@ -1,4 +1,5 @@
-function combine_rois(wtseg_nii,waparc_nii,wperiR_nii,wperiL_nii,at_nii,pm_nii,out_dir)
+function roi_nii = combine_rois(wtseg_nii,waparc_nii,wperiR_nii,wperiL_nii, ...
+	at_nii,pm_nii,out_dir)
 
 % ROIs are combined in a specific order - later ones overwrite earlier ones
 % if there is any overlap.
@@ -83,7 +84,8 @@ fclose(label_fid);
 Vlabels = Vat;
 Vlabels.pinfo(1:2) = [1;0];
 Vlabels.dt(1) = spm_type('uint16');
-Vlabels.fname = fullfile(out_dir,'rois_PMAT.nii');
+roi_nii = fullfile(out_dir,'rois_PMAT.nii');
+Vlabels.fname = roi_nii;
 spm_write_vol(Vlabels,Ylabels);
 
 
