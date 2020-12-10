@@ -8,7 +8,7 @@ flags = struct( ...
 	'wrap',[0 0 0], ...
 	'prefix','r');
 
-spm_reslice_quiet({tgt_nii src_nii},flags);
+spm_reslice({tgt_nii src_nii},flags);
 
 [p,n,e] = fileparts(src_nii);
 rsrc_nii = fullfile(p,['r' n e]);

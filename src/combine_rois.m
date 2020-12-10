@@ -38,7 +38,7 @@ fprintf(label_fid,'Label,Region\n');
 sph_labels = readtable(which('PMAT_labels.csv'));
 for h = 1:height(sph_labels)
 	if sph_labels.Label(h) > 72, continue; end  % Skip ALEC/PMEC for now
-	Ylabels( Yat(:)==sph_labels.Label(h) || Ypm(:)==sph_labels.Label(h) ) ...
+	Ylabels( (Yat(:)==sph_labels.Label(h)) | (Ypm(:)==sph_labels.Label(h)) ) ...
 		= sph_labels.Label(h);
 	fprintf(label_fid,'%d,%s_sph\n',sph_labels.Label(h),sph_labels.Region{h});
 end
@@ -59,7 +59,7 @@ fprintf(label_fid,'104,AT_R_Perirhinal_rh_FS\n');
 %% Now ALEC, PMEC
 for h = 1:height(sph_labels)
 	if sph_labels.Label(h) > 72
-		Ylabels( Yat(:)==sph_labels.Label(h) || Ypm(:)==sph_labels.Label(h) ) ...
+		Ylabels( (Yat(:)==sph_labels.Label(h)) | (Ypm(:)==sph_labels.Label(h)) ) ...
 			= sph_labels.Label(h);
 		fprintf(label_fid,'%d,%s_EC\n',sph_labels.Label(h),sph_labels.Region{h});
 	end
@@ -69,8 +69,8 @@ end
 %% Temporal lobe
 Ylabels(Ytseg(:)==4) = 105;
 Ylabels(Ytseg(:)==1) = 106;
-Ylabels(Ytseg(:)==5 || Ytseg(:)==11) = 107;
-Ylabels(Ytseg(:)==2 || Ytseg(:)==10) = 108;
+Ylabels((Ytseg(:)==5) | (Ytseg(:)==11)) = 107;
+Ylabels((Ytseg(:)==2) | (Ytseg(:)==10)) = 108;
 
 fprintf(label_fid,'105,AT_L_Hippocampus_Anterior_lh_TLv3\n');
 fprintf(label_fid,'106,AT_R_Hippocampus_Anterior_rh_TLv3\n');
