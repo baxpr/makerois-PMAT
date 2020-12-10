@@ -1,4 +1,4 @@
-function combine_rois(wtseg_nii,waparc_nii,wperiR_nii,wperiL_nii,out_dir)
+function combine_rois(wtseg_nii,waparc_nii,wperiR_nii,wperiL_nii,at_nii,pm_nii,out_dir)
 
 % ROIs are combined in a specific order - later ones overwrite earlier ones
 % if there is any overlap.
@@ -9,8 +9,8 @@ Vtseg = spm_vol(wtseg_nii);
 Vaparc = spm_vol(waparc_nii);
 VperiR = spm_vol(wperiR_nii);
 VperiL = spm_vol(wperiL_nii);
-Vat = spm_vol(which('AT_Network_ROIs.nii.gz'));
-Vpm = spm_vol(which('PM_Network_ROIs.nii.gz'));
+Vat = spm_vol(at_nii);
+Vpm = spm_vol(pm_nii);
 spm_check_orientations([Vtseg; Vaparc; VperiR; VperiL; Vat; Vpm]);
 
 Ytseg = spm_read_vols(Vtseg);

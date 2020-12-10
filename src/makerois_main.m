@@ -11,7 +11,7 @@ mnigeom_nii = which(inp.mnigeom_nii);
 
 %% Copy files to working directory with consistent names and unzip
 disp('File prep')
-[tseg_nii,deffwd_nii,aparc_nii,periR_nii,periL_nii] = prep_files(inp);
+[tseg_nii,deffwd_nii,aparc_nii,periR_nii,periL_nii,at_nii,pm_nii] = prep_files(inp);
 
 
 %% Warp/resample ROIs to MNI space
@@ -20,11 +20,11 @@ wtseg_nii = warp_images(tseg_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 waparc_nii = warp_images(aparc_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 wperiR_nii = warp_images(periR_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
 wperiL_nii = warp_images(periL_nii,deffwd_nii,mnigeom_nii,0,inp.out_dir);
-% coreg reslice AT, PM
+% FIXME coreg reslice AT, PM
 
 
 %% Combine desired ROIs into single image
-combine_rois();
+combine_rois(wtseg_nii,waparc_nii,wperiR_nii,wperiL_nii,at_nii,pm_nii,inp.out_dir);
 
 
 %% Make output PDF
