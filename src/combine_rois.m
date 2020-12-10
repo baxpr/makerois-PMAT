@@ -14,7 +14,7 @@ Vat = spm_vol(at_nii);
 Vpm = spm_vol(pm_nii);
 spm_check_orientations([Vtseg; Vaparc; VperiR; VperiL; Vat; Vpm]);
 
-voxel_volume = det(Vtseg.mat);
+voxel_volume = abs(det(Vtseg.mat));
 
 Ytseg = spm_read_vols(Vtseg);
 Yaparc = spm_read_vols(Vaparc);
@@ -56,22 +56,22 @@ Ylabels(Yaparc(:)==2016) = 102;  % R parahipp
 Ylabels(YperiL(:)>0)     = 103;  % L perirhinal, overwrites parahipp
 Ylabels(YperiR(:)>0)     = 104;  % R perirhinal, overwrites parahipp
 
-label_info.Label(end+1,1) = 101;
+label_info.Label(end+1) = 101;
 label_info.Region{end} = 'PM_L_Parahippocampus_lh_FS';
 label_info.Volume_before_overlap_mm3(end) = ...
 	sum(Ylabels(:)==label_info.Label(end)) * voxel_volume;
 
-label_info.Label(end+1,1) = 102;
+label_info.Label(end+1) = 102;
 label_info.Region{end} = 'PM_R_Parahippocampus_rh_FS';
 label_info.Volume_before_overlap_mm3(end) = ...
 	sum(Ylabels(:)==label_info.Label(end)) * voxel_volume;
 
-label_info.Label(end+1,1) = 103;
+label_info.Label(end+1) = 103;
 label_info.Region{end} = 'AT_L_Perirhinal_lh_FS';
 label_info.Volume_before_overlap_mm3(end) = ...
 	sum(Ylabels(:)==label_info.Label(end)) * voxel_volume;
 
-label_info.Label(end+1,1) = 104;
+label_info.Label(end+1) = 104;
 label_info.Region{end} = 'AT_R_Perirhinal_rh_FS';
 label_info.Volume_before_overlap_mm3(end) = ...
 	sum(Ylabels(:)==label_info.Label(end)) * voxel_volume;
@@ -82,10 +82,10 @@ for h = 1:height(sph_labels)
 	if sph_labels.Label(h) > 72
 		Ylabels( (Yat(:)==sph_labels.Label(h)) | (Ypm(:)==sph_labels.Label(h)) ) ...
 			= sph_labels.Label(h);
-		label_info.Label(h,1) = sph_labels.Label(h);
-		label_info.Region{h,1} = sph_labels.Region{h};
-		label_info.Volume_before_overlap_mm3(h,1) = ...
-			sum(Ylabels(:)==label_info.Label(h,1)) * voxel_volume;
+		label_info.Label(end+1) = sph_labels.Label(h);
+		label_info.Region{end} = sph_labels.Region{h};
+		label_info.Volume_before_overlap_mm3(end) = ...
+			sum(Ylabels(:)==label_info.Label(end)) * voxel_volume;
 	end
 end
 
@@ -119,7 +119,7 @@ label_info.Volume_before_overlap_mm3(end) = ...
 
 %% Compute final volumes
 for h = 1:height(label_info)
-	label_info.Volume_mm3 = sum(Ylabels(:)==label_info.Label(h)) * voxel_volume;
+	label_info.Volume_mm3(h) = sum(Ylabels(:)==label_info.Label(h)) * voxel_volume;
 end
 
 
