@@ -1,4 +1,4 @@
-Create study-specific ROI image in MNI space.
+# Create study-specific ROI image in MNI space
 
 - 4mm spheres centered on the peak activations of the PMAT network
 
@@ -12,7 +12,7 @@ Create study-specific ROI image in MNI space.
 
 
 
-Inputs:
+## Inputs:
 
     T1
 	 -> cat12_ss2p0_v2
@@ -25,15 +25,18 @@ Inputs:
 
 
 
-ROI sources:
+## Regions of interest
 
-Spheres
+### Spheres
 
-- 
+Source: _Libby LA, Ekstrom AD, Ragland JD, Ranganath C. Differential connectivity of perirhinal and parahippocampal cortices within human hippocampal subregions revealed by high-resolution functional imaging. J Neurosci. 2012;32(19):6550-6560. doi:10.1523/JNEUROSCI.3711-11.2012_
 
-Entorhinal cortex
+Method: _Schröder TN, Haak K V., Jimenez NIZ, et al. Functional topography of the human entorhinal cortex. Elife. 2015;4(October 2016):1-17. doi:10.7554/eLife.06738_
+ 
 
-- Schröder TN, Haak K V., Jimenez NIZ, et al. Functional topography of the human entorhinal cortex. Elife. 2015;4(October 2016):1-17. doi:10.7554/eLife.06738
+### Entorhinal cortex (ALEC/PMEC)
+
+Schröder TN, Haak K V., Jimenez NIZ, et al. Functional topography of the human entorhinal cortex. Elife. 2015;4(October 2016):1-17. doi:10.7554/eLife.06738
 
 
 Temporal lobe
