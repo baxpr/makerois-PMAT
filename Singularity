@@ -19,7 +19,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=1.0.11
+  version=1.0.12
   
   # apt modules
   apt-get update                                                 > /dev/null
@@ -37,9 +37,6 @@ From: ubuntu:18.04
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
   wget -nv -O /opt/makerois/bin/spm12.ctf https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf?raw=true
-  ls -lh /opt
-  ls -lh /opt/makerois
-  ls -lh /opt/makerois/bin
   
   # Make an info file with the version tag
   echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
