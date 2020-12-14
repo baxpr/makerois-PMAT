@@ -37,6 +37,7 @@ From: ubuntu:18.04
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
   wget -nv -P /opt/makerois/bin -O spm12.ctf https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf?raw=true
+  ls -lh /opt/makerois/bin
   
   # Make an info file with the version tag
   echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
@@ -60,7 +61,7 @@ From: ubuntu:18.04
   mkdir /MCR
   wget -nv -P /MCR https://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/6/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip
   unzip /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip -d /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64 > /dev/null
-  /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64/install -mode silent -agreeToLicense yes
+  /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64/install -mode silent -agreeToLicense yes > /dev/null
   rm -r /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64 /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip
   rmdir /MCR
 
