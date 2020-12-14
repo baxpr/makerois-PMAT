@@ -12,18 +12,38 @@ From: ubuntu:18.04
 
 
 %files
-  bin                          /opt/makerois
-  src                          /opt/makerois
-  build                        /opt/makerois
-  external                     /opt/makerois
-  README.md                    /opt/makerois
-
+  # No local files used - we will grab from github using the release tag
+  # to make sure we're consistent with the specific desired commit
+ 
  
 %labels
   Maintainer baxter.rogers@vanderbilt.edu
 
 
 %post
+  
+  # Version we will use - github release tag. Note that github trims the initial
+  # v in the filename for the downloaded tar.gz, so we add it back in later lines.
+  version=1.0.1
+  
+  # Download the release
+  cd /opt
+  wget -nv https://github.com/baxpr/makerois-PMAT/archive/v${version}.tar.gz
+  tar -zxf makerois-PMAT-${version}.tar.gz
+  mv makerois-PMAT-${version} makerois
+  
+  # Github doesn't put the actual file in the tarball where LFS is used (it gets the pointer 
+  # info instead) so we get the compiled matlab executable via direct download.
+  rm /opt/makerois/bin/spm12.ctf
+  wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf
+
+  # Also need a dry run of SPM executable to avoid directory creation errors later.
+  /opt/makerois/bin/run_spm12.sh /usr/local/MATLAB/MATLAB_Runtime/v97 quit
+  
+  # Make an info file with the version tag
+  echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
+
+  # apt modules
   apt-get update
   apt-get install -y wget unzip zip xvfb ghostscript imagemagick    # Misc tools
   apt-get install -y openjdk-8-jre                                  # Matlab/SPM
@@ -85,14 +105,6 @@ From: ubuntu:18.04
 
   # Create input/output directories for binding
   mkdir /INPUTS && mkdir /OUTPUTS
-
-  # Singularity-hub doesn't work with github LFS (it gets the pointer info instead 
-  # of the actual file) so we get the compiled matlab executable via direct download.
-  rm /opt/makerois/bin/spm12.ctf
-  wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/raw/master/bin/spm12.ctf
-
-  # Also need a dry run of SPM executable to avoid directory creation errors later.
-  /opt/makerois/bin/run_spm12.sh /usr/local/MATLAB/MATLAB_Runtime/v97 quit
 
 
 %environment
