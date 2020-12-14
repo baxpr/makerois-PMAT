@@ -19,7 +19,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=1.0.9
+  version=1.0.10
   
   # apt modules
   apt-get update                                                 > /dev/null
