@@ -14,7 +14,8 @@
 # The SPM12 version also matters. The compilation code is written for r7771.
 
 
-# Where to find SPM12 on our compilation machine
+# Where to find SPM12 on our compilation machine - note, not included in the repo
+# and must be downloaded separately
 SPM_PATH=/wkdir/external/spm12
 
 # We may need to add Matlab to the path on the compilation machine
