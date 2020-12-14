@@ -22,9 +22,8 @@ From: ubuntu:18.04
 
 %post
   
-  # Version we will use - github release tag. Note that github trims the initial
-  # v in the filename for the downloaded tar.gz, so we add it back in later lines.
-  version=1.0.2
+  # Version we will use - github release tag
+  version=v1.0.3
   
   # apt modules
   apt-get update
@@ -33,20 +32,21 @@ From: ubuntu:18.04
 
   # Download the release
   cd /opt
-  wget -nv https://github.com/baxpr/makerois-PMAT/archive/v${version}.tar.gz
-  tar -zxf makerois-PMAT-${version}.tar.gz
-  mv makerois-PMAT-${version} makerois
+  wget -nv -O ${version}.tar.gz https://github.com/baxpr/makerois-PMAT/archive/${version}.tar.gz
+  tar -zxf ${version}.tar.gz
+  mv ${version} makerois
+  rm ${version}.tar.gz
   
   # Github doesn't put the actual file in the tarball where LFS is used (it gets the pointer 
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
-  wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf
+  wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/${version}/bin/spm12.ctf
 
   # Also need a dry run of SPM executable to avoid directory creation errors later.
   /opt/makerois/bin/run_spm12.sh /usr/local/MATLAB/MATLAB_Runtime/v97 quit
   
   # Make an info file with the version tag
-  echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
+  echo "https://github.com/baxpr/makerois-PMAT release ${version}" > /opt/makerois/version.txt
   
   # FSL dependencies, h/t https://github.com/MPIB/singularity-fsl
   #    debian vs ubuntu:
