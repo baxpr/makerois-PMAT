@@ -19,7 +19,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=1.0.12
+  version=1.0.13
   
   # apt modules
   apt-get update                                                 > /dev/null
@@ -87,7 +87,7 @@ From: ubuntu:18.04
   # Get and install main FSL package
   fsl_version=6.0.2
   cd /usr/local
-  wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-${fsl_version}-centos7_64.tar.gz
+  wget -nv https://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-${fsl_version}-centos7_64.tar.gz
   tar zxf fsl-${fsl_version}-centos7_64.tar.gz
   rm fsl-${fsl_version}-centos7_64.tar.gz
   
@@ -108,7 +108,7 @@ From: ubuntu:18.04
   # auto-generated run_??.sh script does it for us.
   
   # Matlab shell
-  MATLAB_SHELL=/bin/bash
+  export MATLAB_SHELL=/bin/bash
   
   # Path
   export PATH=/opt/makerois/src:/usr/local/fsl/bin:${PATH}

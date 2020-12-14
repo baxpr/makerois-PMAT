@@ -3,3 +3,6 @@
 local*
 INPUTS*
 OUTPUTS*
+freesurfer_license.txt
+tmp
+*.simg
