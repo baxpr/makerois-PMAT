@@ -19,7 +19,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=1.0.10
+  version=1.0.11
   
   # apt modules
   apt-get update                                                 > /dev/null
@@ -36,7 +36,9 @@ From: ubuntu:18.04
   # Github doesn't put the actual file in the tarball where LFS is used (it gets the pointer 
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
-  wget -nv -P /opt/makerois/bin -O spm12.ctf https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf?raw=true
+  wget -nv -O /opt/makerois/bin/spm12.ctf https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf?raw=true
+  ls -lh /opt
+  ls -lh /opt/makerois
   ls -lh /opt/makerois/bin
   
   # Make an info file with the version tag
