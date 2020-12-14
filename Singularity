@@ -23,7 +23,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=v1.0.3
+  version=test
   
   # apt modules
   apt-get update
