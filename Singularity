@@ -19,7 +19,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=1.0.4
+  version=1.0.5
   
   # apt modules
   apt-get update
@@ -29,21 +29,14 @@ From: ubuntu:18.04
   # Download the release
   cd /opt
   wget -nv -O v${version}.tar.gz https://github.com/baxpr/makerois-PMAT/archive/v${version}.tar.gz
-  ls
   tar -zxf v${version}.tar.gz
-  ls
   mv makerois-PMAT-${version} makerois
-  ls
-  ls makerois
   rm v${version}.tar.gz
   
   # Github doesn't put the actual file in the tarball where LFS is used (it gets the pointer 
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
   wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf
-
-  # Also need a dry run of SPM executable to avoid directory creation errors later.
-  /opt/makerois/bin/run_spm12.sh /usr/local/MATLAB/MATLAB_Runtime/v97 quit
   
   # Make an info file with the version tag
   echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
@@ -70,6 +63,9 @@ From: ubuntu:18.04
   /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64/install -mode silent -agreeToLicense yes
   rm -r /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64 /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip
   rmdir /MCR
+
+  # Need a dry run of SPM executable to avoid directory creation errors later.
+  /opt/makerois/bin/run_spm12.sh /usr/local/MATLAB/MATLAB_Runtime/v97 quit
 
   # Install Freesurfer. We just need mri_convert and mri_label2vol
   wget -nv -P /usr/local https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/dev/freesurfer-linux-centos7_x86_64-dev.tar.gz
