@@ -19,12 +19,12 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=1.0.6
+  version=1.0.7
   
   # apt modules
-  apt-get update
-  apt-get install -y wget unzip zip xvfb ghostscript imagemagick    # Misc tools
-  apt-get install -y openjdk-8-jre                                  # Matlab/SPM
+  apt-get update                                                 > /dev/null
+  apt-get install -y wget unzip zip xvfb ghostscript imagemagick > /dev/null   # Misc tools
+  apt-get install -y openjdk-8-jre                               > /dev/null   # Matlab/SPM
 
   # Download the release
   cd /opt
@@ -37,6 +37,7 @@ From: ubuntu:18.04
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
   wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf?raw=true
+  ls -lh /opt/makerois/bin
   
   # Make an info file with the version tag
   echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
@@ -50,7 +51,7 @@ From: ubuntu:18.04
           libjpeg-turbo8 libpng16-16 libxrender1 libxcursor1 \
           libxinerama1 libfreetype6 libxft2 libxrandr2 libmng2 \
           libgtk2.0-0 libpulse0 libasound2 libcaca0 libopenblas-base \
-          bzip2 dc bc
+          bzip2 dc bc > /dev/null
   
   # Fix imagemagick policy to allow PDF output. See https://usn.ubuntu.com/3785-1/
   sed -i 's/rights="none" pattern="PDF"/rights="read | write" pattern="PDF"/' \
@@ -59,7 +60,7 @@ From: ubuntu:18.04
   # Download the Matlab Compiled Runtime installer, install, clean up
   mkdir /MCR
   wget -nv -P /MCR https://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/6/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip
-  unzip /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip -d /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64
+  unzip /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip -d /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64 > /dev/null
   /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64/install -mode silent -agreeToLicense yes
   rm -r /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64 /MCR/MATLAB_Runtime_R2019b_Update_6_glnxa64.zip
   rmdir /MCR
