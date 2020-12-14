@@ -7,10 +7,6 @@ From: ubuntu:18.04
     /opt/makerois/README.md
 
 
-%setup
-  mkdir -p ${SINGULARITY_ROOTFS}/opt/makerois
-
-
 %files
   # No local files used - we will grab from github using the release tag
   # to make sure we're consistent with the specific desired commit
@@ -23,7 +19,7 @@ From: ubuntu:18.04
 %post
   
   # Version we will use - github release tag
-  version=test
+  version=1.0.4
   
   # apt modules
   apt-get update
@@ -32,25 +28,25 @@ From: ubuntu:18.04
 
   # Download the release
   cd /opt
-  wget -nv -O ${version}.tar.gz https://github.com/baxpr/makerois-PMAT/archive/${version}.tar.gz
+  wget -nv -O v${version}.tar.gz https://github.com/baxpr/makerois-PMAT/archive/v${version}.tar.gz
   ls
-  tar -zxf ${version}.tar.gz
+  tar -zxf v${version}.tar.gz
   ls
-  mv ${version} makerois
+  mv makerois-PMAT-${version} makerois
   ls
   ls makerois
-  rm ${version}.tar.gz
+  rm v${version}.tar.gz
   
   # Github doesn't put the actual file in the tarball where LFS is used (it gets the pointer 
   # info instead) so we get the compiled matlab executable via direct download.
   rm /opt/makerois/bin/spm12.ctf
-  wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/${version}/bin/spm12.ctf
+  wget -nv -P /opt/makerois/bin https://github.com/baxpr/makerois-PMAT/blob/v${version}/bin/spm12.ctf
 
   # Also need a dry run of SPM executable to avoid directory creation errors later.
   /opt/makerois/bin/run_spm12.sh /usr/local/MATLAB/MATLAB_Runtime/v97 quit
   
   # Make an info file with the version tag
-  echo "https://github.com/baxpr/makerois-PMAT release ${version}" > /opt/makerois/version.txt
+  echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
   
   # FSL dependencies, h/t https://github.com/MPIB/singularity-fsl
   #    debian vs ubuntu:
