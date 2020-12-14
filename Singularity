@@ -33,8 +33,12 @@ From: ubuntu:18.04
   # Download the release
   cd /opt
   wget -nv -O ${version}.tar.gz https://github.com/baxpr/makerois-PMAT/archive/${version}.tar.gz
+  ls
   tar -zxf ${version}.tar.gz
+  ls
   mv ${version} makerois
+  ls
+  ls makerois
   rm ${version}.tar.gz
   
   # Github doesn't put the actual file in the tarball where LFS is used (it gets the pointer 
