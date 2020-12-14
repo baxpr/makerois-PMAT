@@ -24,8 +24,13 @@ From: ubuntu:18.04
   
   # Version we will use - github release tag. Note that github trims the initial
   # v in the filename for the downloaded tar.gz, so we add it back in later lines.
-  version=1.0.1
+  version=1.0.2
   
+  # apt modules
+  apt-get update
+  apt-get install -y wget unzip zip xvfb ghostscript imagemagick    # Misc tools
+  apt-get install -y openjdk-8-jre                                  # Matlab/SPM
+
   # Download the release
   cd /opt
   wget -nv https://github.com/baxpr/makerois-PMAT/archive/v${version}.tar.gz
@@ -42,11 +47,6 @@ From: ubuntu:18.04
   
   # Make an info file with the version tag
   echo "https://github.com/baxpr/makerois-PMAT release v${version}" > /opt/makerois/version.txt
-
-  # apt modules
-  apt-get update
-  apt-get install -y wget unzip zip xvfb ghostscript imagemagick    # Misc tools
-  apt-get install -y openjdk-8-jre                                  # Matlab/SPM
   
   # FSL dependencies, h/t https://github.com/MPIB/singularity-fsl
   #    debian vs ubuntu:
